@@ -1,0 +1,66 @@
+[tool.poetry]
+name = "terminaltables-whl"
+version = "3.1.2"
+description = "Generate simple tables in terminals from a nested list of strings. (has wheels!)"
+authors = [
+    "Robpol86 <robpol86@gmail.com>",
+    "Matthew Martin <matthewdeanmartin@gmail.com>"
+]
+keywords = ["Shell","Bash","ANSI","ASCII","terminal","tables"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Environment :: MacOS X",
+    "Environment :: Win32 (MS Windows)",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 2.6",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3.3",
+    "Programming Language :: Python :: 3.4",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Terminals",
+    "Topic :: Text Processing :: Markup",
+]
+packages = [
+    { include = "terminaltables" },
+]
+include = [
+    "terminaltables/**/*.py",
+]
+exclude = [
+]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/matthewdeanmartin/terminaltables"
+homepage = "https://github.com/matthewdeanmartin/terminaltables"
+documentation = "https://github.com/matthewdeanmartin/terminaltables"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/matthewdeanmartin/terminaltables/issues"
+"Change Log" = "https://github.com/matthewdeanmartin/terminaltables/blob/main/docs/CHANGES.MD"
+
+[tool.poetry.scripts]
+
+
+[tool.poetry.dependencies]
+# per vermin's estimation
+python = ">=2.6 || >=3.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "==6.0.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
