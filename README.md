@@ -9,7 +9,6 @@ Easily draw tables in terminal/console applications from a list of lists of stri
 
 📖 Full documentation: https://robpol86.github.io/terminaltables
 
-
 Quickstart
 ==========
 
@@ -23,6 +22,7 @@ Usage:
 
 ```python
 from terminaltables import AsciiTable
+
 table_data = [
     ['Heading1', 'Heading2'],
     ['row1 column1', 'row1 column2'],
@@ -30,8 +30,10 @@ table_data = [
     ['row3 column1', 'row3 column2']
 ]
 table = AsciiTable(table_data)
-print table.table
+print
+table.table
 ```
+
 ```bash
 +--------------+--------------+
 | Heading1     | Heading2     |
@@ -44,11 +46,12 @@ print table.table
 
 Example Implementations
 =======================
-[Example Scripts Screenshot](docs/examples.png?raw=true)
+![Example Scripts Screenshot](https://github.com/matthewdeanmartin/terminaltables/blob/master/docs/examples.png?raw=true)
 
-Source code for examples: 
-- [example1.py](https://github.com/Robpol86/terminaltables/blob/master/example1.py)
-- [example2.py](https://github.com/Robpol86/terminaltables/blob/master/example2.py)
-- [example3.py](https://github.com/Robpol86/terminaltables/blob/master/example3.py>)
+Source code for examples:
 
-[Change Log](CHANGELOG.md)
+- [example1.py](https://github.com/matthewdeanmartin/terminaltables/blob/master/example1.py)
+- [example2.py](https://github.com/matthewdeanmartin/terminaltables/blob/master/example2.py)
+- [example3.py](https://github.com/matthewdeanmartin/terminaltables/blob/master/example3.py>)
+
+[Change Log](https://github.com/matthewdeanmartin/terminaltables/blob/master/CHANGELOG.md)
