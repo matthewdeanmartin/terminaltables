@@ -10,6 +10,7 @@ colorama=">=0.3.7"
 colorclass=">=2.2.0"
 pytest-cov=">=2.4.0"
 termcolor = "*"
+check-wheel-contents = "*"
 
 [requires]
 python_version = "3.9"
