@@ -49,7 +49,7 @@ documentation = "https://github.com/matthewdeanmartin/terminaltables"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/matthewdeanmartin/terminaltables/issues"
-"Change Log" = "https://github.com/matthewdeanmartin/terminaltables/blob/main/docs/CHANGES.MD"
+"Change Log" = "https://github.com/matthewdeanmartin/terminaltables/blob/master/CHANGES.MD"
 
 [tool.poetry.scripts]
 

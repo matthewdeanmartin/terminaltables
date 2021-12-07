@@ -4,6 +4,12 @@ Changelog
 
 This project adheres to `Semantic Versioning <http://semver.org/>`_.
 
+3.1.7 - 2016-12-7
+------------------
+
+Added
+    * Published wheel. Resume maintenance under new developer after main project had been archived.
+
 3.1.0 - 2016-10-16
 ------------------
 

@@ -1,13 +1,11 @@
 ## terminaltables
 
-Forked because original project's repo is ARCHIVED and there are no wheels for the old project in pypi.
-
 # What is it
 
 Easily draw tables in terminal/console applications from a list of lists of strings. Supports multi-line rows.
 
-- Python 2.6, 2.7, PyPy, PyPy3, 3.3, 3.4, and 3.5 supported on Linux and OS X.
-- Python 2.7, 3.3, 3.4, and 3.5 supported on Windows (both 32 and 64 bit versions of Python).
+- Python 2.6, 2.7, PyPy, PyPy3, 3.3, 3.4, and 3.5+ supported on Linux and OS X.
+- Python 2.7, 3.3, 3.4, and 3.5+ supported on Windows (both 32 and 64 bit versions of Python).
 
 📖 Full documentation: https://robpol86.github.io/terminaltables
 
@@ -49,8 +47,8 @@ Example Implementations
 [Example Scripts Screenshot](docs/examples.png?raw=true)
 
 Source code for examples: 
-[example1.py](https://github.com/Robpol86/terminaltables/blob/master/example1.py)
-`example2.py <https://github.com/Robpol86/terminaltables/blob/master/example2.py>`_, and
-`example3.py <https://github.com/Robpol86/terminaltables/blob/master/example3.py>`_
+- [example1.py](https://github.com/Robpol86/terminaltables/blob/master/example1.py)
+- [example2.py](https://github.com/Robpol86/terminaltables/blob/master/example2.py)
+- [example3.py](https://github.com/Robpol86/terminaltables/blob/master/example3.py>)
 
-.. changelog-section-start
+[Change Log](CHANGELOG.md)
