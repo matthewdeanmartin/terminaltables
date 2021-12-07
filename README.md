@@ -52,6 +52,6 @@ Source code for examples:
 
 - [example1.py](https://github.com/matthewdeanmartin/terminaltables/blob/master/example1.py)
 - [example2.py](https://github.com/matthewdeanmartin/terminaltables/blob/master/example2.py)
-- [example3.py](https://github.com/matthewdeanmartin/terminaltables/blob/master/example3.py>)
+- [example3.py](https://github.com/matthewdeanmartin/terminaltables/blob/master/example3.py)
 
 [Change Log](https://github.com/matthewdeanmartin/terminaltables/blob/master/CHANGELOG.md)
