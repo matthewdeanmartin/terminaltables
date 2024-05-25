@@ -1,4 +1,5 @@
 """GithubFlavoredMarkdownTable class."""
+from typing import Sequence
 
 from terminaltables.ascii_table import AsciiTable
 from terminaltables.build import combine
@@ -13,7 +14,7 @@ class GithubFlavoredMarkdownTable(AsciiTable):
     :ivar dict justify_columns: Horizontal justification. Keys are column indexes (int). Values are right/left/center.
     """
 
-    def __init__(self, table_data):
+    def __init__(self, table_data:Sequence[Sequence[str]]):
         """Constructor.
 
         :param iter table_data: List (empty or list of lists of strings) representing the table.
@@ -41,13 +42,15 @@ class GithubFlavoredMarkdownTable(AsciiTable):
         columns = list()
         for i, width in enumerate(outer_widths):
             justify = self.justify_columns.get(i)
-            width = max(3, width)  # Width should be at least 3 so justification can be applied.
-            if justify == 'left':
-                columns.append(':' + horizontal * (width - 1))
-            elif justify == 'right':
-                columns.append(horizontal * (width - 1) + ':')
-            elif justify == 'center':
-                columns.append(':' + horizontal * (width - 2) + ':')
+            width = max(
+                3, width
+            )  # Width should be at least 3 so justification can be applied.
+            if justify == "left":
+                columns.append(":" + horizontal * (width - 1))
+            elif justify == "right":
+                columns.append(horizontal * (width - 1) + ":")
+            elif justify == "center":
+                columns.append(":" + horizontal * (width - 2) + ":")
             else:
                 columns.append(horizontal * width)
 
@@ -63,7 +66,7 @@ class GithubFlavoredMarkdownTable(AsciiTable):
         """
         for i, row in enumerate(self.table_data):
             # Yield the row line by line (e.g. multi-line rows).
-            for line in self.gen_row_lines(row, 'row', inner_widths, inner_heights[i]):
+            for line in self.gen_row_lines(row, "row", inner_widths, inner_heights[i]):
                 yield line
             # Yield heading separator.
             if i == 0:

@@ -6,12 +6,16 @@ from terminaltables import terminal_io
 class MockKernel32(object):
     """Mock kernel32."""
 
-    def __init__(self, stderr=terminal_io.INVALID_HANDLE_VALUE, stdout=terminal_io.INVALID_HANDLE_VALUE):
+    def __init__(
+        self,
+        stderr=terminal_io.INVALID_HANDLE_VALUE,
+        stdout=terminal_io.INVALID_HANDLE_VALUE,
+    ):
         """Constructor."""
         self.stderr = stderr
         self.stdout = stdout
-        self.csbi_err = b'x\x00)#\x00\x00\x87\x05\x07\x00\x00\x00j\x05w\x00\x87\x05x\x00J\x00'  # 119 x 29
-        self.csbi_out = b'L\x00,\x01\x00\x00*\x01\x07\x00\x00\x00\x0e\x01K\x00*\x01L\x00L\x00'  # 75 x 28
+        self.csbi_err = b"x\x00)#\x00\x00\x87\x05\x07\x00\x00\x00j\x05w\x00\x87\x05x\x00J\x00"  # 119 x 29
+        self.csbi_out = b"L\x00,\x01\x00\x00*\x01\x07\x00\x00\x00\x0e\x01K\x00*\x01L\x00L\x00"  # 75 x 28
         self.setConsoleTitleA_called = False
         self.setConsoleTitleW_called = False
 
