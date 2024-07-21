@@ -1,9 +1,18 @@
 """Combine cells into rows."""
 
-from terminaltables.width_and_alignment import visible_width
+from typing import Generator, Iterator, Optional, Sequence, Union
+
+from terminaltables3.width_and_alignment import visible_width
 
 
-def combine(line, left, intersect, right):
+def combine(
+    line: Union[
+        Generator[Union[int, str], None, None], Iterator[Optional[Union[int, str]]]
+    ],
+    left: str,
+    intersect: Optional[str],
+    right: str,
+) -> Generator[int, None, None]:
     """Zip borders between items in `line`.
 
     e.g. ('l', '1', 'c', '2', 'c', '3', 'r')
@@ -41,15 +50,21 @@ def combine(line, left, intersect, right):
                     yield intersect
                     item = peek
     else:
-        for i in line:
-            yield i
+        yield from line
 
-    # Yield right border.
+        # Yield right border.
     if right:
         yield right
 
 
-def build_border(outer_widths, horizontal, left, intersect, right, title=None):
+def build_border(
+    outer_widths: Sequence[int],
+    horizontal: str,
+    left: str,
+    intersect: str,
+    right: str,
+    title: Optional[str] = None,
+):
     """Build the top/bottom/middle row. Optionally embed the table title within the border.
 
     Title is hidden if it doesn't fit between the left/right characters/edges.
@@ -86,9 +101,13 @@ def build_border(outer_widths, horizontal, left, intersect, right, title=None):
 
     # Handle title fitting in the first column.
     if length == outer_widths[0]:
-        return combine([title] + [horizontal * c for c in outer_widths[1:]], left, intersect, right)
+        return combine(
+            [title] + [horizontal * c for c in outer_widths[1:]], left, intersect, right
+        )
     if length < outer_widths[0]:
-        columns = [title + horizontal * (outer_widths[0] - length)] + [horizontal * c for c in outer_widths[1:]]
+        columns = [title + horizontal * (outer_widths[0] - length)] + [
+            horizontal * c for c in outer_widths[1:]
+        ]
         return combine(columns, left, intersect, right)
 
     # Handle wide titles/narrow columns.
@@ -96,7 +115,9 @@ def build_border(outer_widths, horizontal, left, intersect, right, title=None):
     for width in combine(outer_widths, None, bool(intersect), None):
         # If title is taken care of.
         if length < 1:
-            columns_and_intersects.append(intersect if width is True else horizontal * width)
+            columns_and_intersects.append(
+                intersect if width is True else horizontal * width
+            )
         # If title's last character overrides an intersect character.
         elif width is True and length == 1:
             length = 0
@@ -105,7 +126,9 @@ def build_border(outer_widths, horizontal, left, intersect, right, title=None):
             length -= 1
         # If title's last character is within a column.
         elif width >= length:
-            columns_and_intersects[0] += horizontal * (width - length)  # Append horizontal chars to title.
+            columns_and_intersects[0] += horizontal * (
+                width - length
+            )  # Append horizontal chars to title.
             length = 0
         # If remainder of title won't fit in a column.
         else:
@@ -148,4 +171,4 @@ def flatten(table):
     :return: Joined rows/cells.
     :rtype: str
     """
-    return '\n'.join(''.join(r) for r in table)
+    return "\n".join("".join(r) for r in table)

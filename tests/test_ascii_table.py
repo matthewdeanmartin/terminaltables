@@ -2,19 +2,22 @@
 
 import pytest
 
-from terminaltables.other_tables import AsciiTable
+from terminaltables3.other_tables import AsciiTable
 
 SINGLE_LINE = (
-    ('Name', 'Color', 'Type'),
-    ('Avocado', 'green', 'nut'),
-    ('Tomato', 'red', 'fruit'),
-    ('Lettuce', 'green', 'vegetable'),
+    ("Name", "Color", "Type"),
+    ("Avocado", "green", "nut"),
+    ("Tomato", "red", "fruit"),
+    ("Lettuce", "green", "vegetable"),
 )
 
 MULTI_LINE = (
-    ('Show', 'Characters'),
-    ('Rugrats', 'Tommy Pickles, Chuckie Finster, Phillip DeVille, Lillian DeVille, Angelica Pickles,\nDil Pickles'),
-    ('South Park', 'Stan Marsh, Kyle Broflovski, Eric Cartman, Kenny McCormick'),
+    ("Show", "Characters"),
+    (
+        "Rugrats",
+        "Tommy Pickles, Chuckie Finster, Phillip DeVille, Lillian DeVille, Angelica Pickles,\nDil Pickles",
+    ),
+    ("South Park", "Stan Marsh, Kyle Broflovski, Eric Cartman, Kenny McCormick"),
 )
 
 
@@ -24,20 +27,25 @@ def patch(monkeypatch):
 
     :param monkeypatch: pytest fixture.
     """
-    monkeypatch.setattr('terminaltables.ascii_table.terminal_size', lambda: (79, 24))
-    monkeypatch.setattr('terminaltables.width_and_alignment.terminal_size', lambda: (79, 24))
+    monkeypatch.setattr("terminaltables3.ascii_table.terminal_size", lambda: (79, 24))
+    monkeypatch.setattr(
+        "terminaltables3.width_and_alignment.terminal_size", lambda: (79, 24)
+    )
 
 
-@pytest.mark.parametrize('table_data,column_number,expected', [
-    ([], 0, IndexError),
-    ([[]], 0, IndexError),
-    ([['']], 1, IndexError),
-    (SINGLE_LINE, 0, 55),
-    (SINGLE_LINE, 1, 53),
-    (SINGLE_LINE, 2, 57),
-    (MULTI_LINE, 0, -11),
-    (MULTI_LINE, 1, 62),
-])
+@pytest.mark.parametrize(
+    "table_data,column_number,expected",
+    [
+        ([], 0, IndexError),
+        ([[]], 0, IndexError),
+        ([[""]], 1, IndexError),
+        (SINGLE_LINE, 0, 55),
+        (SINGLE_LINE, 1, 53),
+        (SINGLE_LINE, 2, 57),
+        (MULTI_LINE, 0, -11),
+        (MULTI_LINE, 1, 62),
+    ],
+)
 def test_column_max_width(table_data, column_number, expected):
     """Test method in class.
 
@@ -47,7 +55,7 @@ def test_column_max_width(table_data, column_number, expected):
     """
     table = AsciiTable(table_data)
 
-    if expected == IndexError:
+    if expected is IndexError:
         with pytest.raises(IndexError):
             table.column_max_width(column_number)
         return
@@ -58,22 +66,25 @@ def test_column_max_width(table_data, column_number, expected):
 
 def test_column_widths():
     """Test method in class."""
-    assert AsciiTable([]).column_widths == list()
+    assert AsciiTable([]).column_widths == []
 
     table = AsciiTable(SINGLE_LINE)
     actual = table.column_widths
     assert actual == [7, 5, 9]
 
 
-@pytest.mark.parametrize('table_data,terminal_width,expected', [
-    ([], None, True),
-    ([[]], None, True),
-    ([['']], None, True),
-    (SINGLE_LINE, None, True),
-    (SINGLE_LINE, 30, False),
-    (MULTI_LINE, None, False),
-    (MULTI_LINE, 100, True),
-])
+@pytest.mark.parametrize(
+    "table_data,terminal_width,expected",
+    [
+        ([], None, True),
+        ([[]], None, True),
+        ([[""]], None, True),
+        (SINGLE_LINE, None, True),
+        (SINGLE_LINE, 30, False),
+        (MULTI_LINE, None, False),
+        (MULTI_LINE, 100, True),
+    ],
+)
 def test_ok(monkeypatch, table_data, terminal_width, expected):
     """Test method in class.
 
@@ -83,20 +94,25 @@ def test_ok(monkeypatch, table_data, terminal_width, expected):
     :param bool expected: Expected return value.
     """
     if terminal_width is not None:
-        monkeypatch.setattr('terminaltables.ascii_table.terminal_size', lambda: (terminal_width, 24))
+        monkeypatch.setattr(
+            "terminaltables3.ascii_table.terminal_size", lambda: (terminal_width, 24)
+        )
     table = AsciiTable(table_data)
     actual = table.ok
     assert actual is expected
 
 
-@pytest.mark.parametrize('table_data,expected', [
-    ([], 2),
-    ([[]], 2),
-    ([['']], 4),
-    ([[' ']], 5),
-    (SINGLE_LINE, 31),
-    (MULTI_LINE, 100),
-])
+@pytest.mark.parametrize(
+    "table_data,expected",
+    [
+        ([], 2),
+        ([[]], 2),
+        ([[""]], 4),
+        ([[" "]], 5),
+        (SINGLE_LINE, 31),
+        (MULTI_LINE, 100),
+    ],
+)
 def test_table_width(table_data, expected):
     """Test method in class.
 

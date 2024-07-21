@@ -1,4 +1,3 @@
-# coding: utf-8
 """Test function in module."""
 
 import pytest
@@ -6,75 +5,74 @@ from colorama import Fore
 from colorclass import Color
 from termcolor import colored
 
-from terminaltables.width_and_alignment import align_and_pad_cell
+from terminaltables3.width_and_alignment import align_and_pad_cell
 
 
-@pytest.mark.parametrize('string,align,width,expected', [
-    ('test', '', 4, ['test']),
-    (123, '', 3, ['123']),
-    (0.9, '', 3, ['0.9']),
-    (None, '', 4, ['None']),
-    (True, '', 4, ['True']),
-    (False, '', 5, ['False']),
-    (Color('{blue}Test{/blue}'), '', 4, ['\x1b[34mTest\x1b[39m']),
-    (Fore.BLUE + 'Test' + Fore.RESET, '', 4, ['\x1b[34mTest\x1b[39m']),
-    (colored('Test', 'blue'), '', 4, ['\x1b[34mTest\x1b[0m']),
-    ('蓝色', '', 4, ['蓝色']),
-    (u'שלום', '', 4, [u'\u05e9\u05dc\u05d5\u05dd']),
-    (u'معرب', '', 4, [u'\u0645\u0639\u0631\u0628']),
-
-    ('test', '', 5, ['test ']),
-    (123, '', 4, ['123 ']),
-    (0.9, '', 4, ['0.9 ']),
-    (None, '', 5, ['None ']),
-    (True, '', 5, ['True ']),
-    (False, '', 6, ['False ']),
-    (Color('{blue}Test{/blue}'), '', 5, ['\x1b[34mTest\x1b[39m ']),
-    (Fore.BLUE + 'Test' + Fore.RESET, '', 5, ['\x1b[34mTest\x1b[39m ']),
-    (colored('Test', 'blue'), '', 5, ['\x1b[34mTest\x1b[0m ']),
-    ('蓝色', '', 5, ['蓝色 ']),
-    (u'שלום', '', 5, [u'\u05e9\u05dc\u05d5\u05dd ']),
-    (u'معرب', '', 5, [u'\u0645\u0639\u0631\u0628 ']),
-
-    ('test', 'left', 5, ['test ']),
-    (123, 'left', 4, ['123 ']),
-    (0.9, 'left', 4, ['0.9 ']),
-    (None, 'left', 5, ['None ']),
-    (True, 'left', 5, ['True ']),
-    (False, 'left', 6, ['False ']),
-    (Color('{blue}Test{/blue}'), 'left', 5, ['\x1b[34mTest\x1b[39m ']),
-    (Fore.BLUE + 'Test' + Fore.RESET, 'left', 5, ['\x1b[34mTest\x1b[39m ']),
-    (colored('Test', 'blue'), 'left', 5, ['\x1b[34mTest\x1b[0m ']),
-    ('蓝色', 'left', 5, ['蓝色 ']),
-    (u'שלום', 'left', 5, [u'\u05e9\u05dc\u05d5\u05dd ']),
-    (u'معرب', 'left', 5, [u'\u0645\u0639\u0631\u0628 ']),
-
-    ('test', 'right', 5, [' test']),
-    (123, 'right', 4, [' 123']),
-    (0.9, 'right', 4, [' 0.9']),
-    (None, 'right', 5, [' None']),
-    (True, 'right', 5, [' True']),
-    (False, 'right', 6, [' False']),
-    (Color('{blue}Test{/blue}'), 'right', 5, [' \x1b[34mTest\x1b[39m']),
-    (Fore.BLUE + 'Test' + Fore.RESET, 'right', 5, [' \x1b[34mTest\x1b[39m']),
-    (colored('Test', 'blue'), 'right', 5, [' \x1b[34mTest\x1b[0m']),
-    ('蓝色', 'right', 5, [' 蓝色']),
-    (u'שלום', 'right', 5, [u' \u05e9\u05dc\u05d5\u05dd']),
-    (u'معرب', 'right', 5, [u' \u0645\u0639\u0631\u0628']),
-
-    ('test', 'center', 6, [' test ']),
-    (123, 'center', 5, [' 123 ']),
-    (0.9, 'center', 5, [' 0.9 ']),
-    (None, 'center', 6, [' None ']),
-    (True, 'center', 6, [' True ']),
-    (False, 'center', 7, [' False ']),
-    (Color('{blue}Test{/blue}'), 'center', 6, [' \x1b[34mTest\x1b[39m ']),
-    (Fore.BLUE + 'Test' + Fore.RESET, 'center', 6, [' \x1b[34mTest\x1b[39m ']),
-    (colored('Test', 'blue'), 'center', 6, [' \x1b[34mTest\x1b[0m ']),
-    ('蓝色', 'center', 6, [' 蓝色 ']),
-    (u'שלום', 'center', 6, [u' \u05e9\u05dc\u05d5\u05dd ']),
-    (u'معرب', 'center', 6, [u' \u0645\u0639\u0631\u0628 ']),
-])
+@pytest.mark.parametrize(
+    "string,align,width,expected",
+    [
+        ("test", "", 4, ["test"]),
+        (123, "", 3, ["123"]),
+        (0.9, "", 3, ["0.9"]),
+        (None, "", 4, ["None"]),
+        (True, "", 4, ["True"]),
+        (False, "", 5, ["False"]),
+        (Color("{blue}Test{/blue}"), "", 4, ["\x1b[34mTest\x1b[39m"]),
+        (Fore.BLUE + "Test" + Fore.RESET, "", 4, ["\x1b[34mTest\x1b[39m"]),
+        (colored("Test", "blue"), "", 4, ["\x1b[34mTest\x1b[0m"]),
+        ("蓝色", "", 4, ["蓝色"]),
+        ("שלום", "", 4, ["\u05e9\u05dc\u05d5\u05dd"]),
+        ("معرب", "", 4, ["\u0645\u0639\u0631\u0628"]),
+        ("test", "", 5, ["test "]),
+        (123, "", 4, ["123 "]),
+        (0.9, "", 4, ["0.9 "]),
+        (None, "", 5, ["None "]),
+        (True, "", 5, ["True "]),
+        (False, "", 6, ["False "]),
+        (Color("{blue}Test{/blue}"), "", 5, ["\x1b[34mTest\x1b[39m "]),
+        (Fore.BLUE + "Test" + Fore.RESET, "", 5, ["\x1b[34mTest\x1b[39m "]),
+        (colored("Test", "blue"), "", 5, ["\x1b[34mTest\x1b[0m "]),
+        ("蓝色", "", 5, ["蓝色 "]),
+        ("שלום", "", 5, ["\u05e9\u05dc\u05d5\u05dd "]),
+        ("معرب", "", 5, ["\u0645\u0639\u0631\u0628 "]),
+        ("test", "left", 5, ["test "]),
+        (123, "left", 4, ["123 "]),
+        (0.9, "left", 4, ["0.9 "]),
+        (None, "left", 5, ["None "]),
+        (True, "left", 5, ["True "]),
+        (False, "left", 6, ["False "]),
+        (Color("{blue}Test{/blue}"), "left", 5, ["\x1b[34mTest\x1b[39m "]),
+        (Fore.BLUE + "Test" + Fore.RESET, "left", 5, ["\x1b[34mTest\x1b[39m "]),
+        (colored("Test", "blue"), "left", 5, ["\x1b[34mTest\x1b[0m "]),
+        ("蓝色", "left", 5, ["蓝色 "]),
+        ("שלום", "left", 5, ["\u05e9\u05dc\u05d5\u05dd "]),
+        ("معرب", "left", 5, ["\u0645\u0639\u0631\u0628 "]),
+        ("test", "right", 5, [" test"]),
+        (123, "right", 4, [" 123"]),
+        (0.9, "right", 4, [" 0.9"]),
+        (None, "right", 5, [" None"]),
+        (True, "right", 5, [" True"]),
+        (False, "right", 6, [" False"]),
+        (Color("{blue}Test{/blue}"), "right", 5, [" \x1b[34mTest\x1b[39m"]),
+        (Fore.BLUE + "Test" + Fore.RESET, "right", 5, [" \x1b[34mTest\x1b[39m"]),
+        (colored("Test", "blue"), "right", 5, [" \x1b[34mTest\x1b[0m"]),
+        ("蓝色", "right", 5, [" 蓝色"]),
+        ("שלום", "right", 5, [" \u05e9\u05dc\u05d5\u05dd"]),
+        ("معرب", "right", 5, [" \u0645\u0639\u0631\u0628"]),
+        ("test", "center", 6, [" test "]),
+        (123, "center", 5, [" 123 "]),
+        (0.9, "center", 5, [" 0.9 "]),
+        (None, "center", 6, [" None "]),
+        (True, "center", 6, [" True "]),
+        (False, "center", 7, [" False "]),
+        (Color("{blue}Test{/blue}"), "center", 6, [" \x1b[34mTest\x1b[39m "]),
+        (Fore.BLUE + "Test" + Fore.RESET, "center", 6, [" \x1b[34mTest\x1b[39m "]),
+        (colored("Test", "blue"), "center", 6, [" \x1b[34mTest\x1b[0m "]),
+        ("蓝色", "center", 6, [" 蓝色 "]),
+        ("שלום", "center", 6, [" \u05e9\u05dc\u05d5\u05dd "]),
+        ("معرب", "center", 6, [" \u0645\u0639\u0631\u0628 "]),
+    ],
+)
 def test_width(string, align, width, expected):
     """Test width and horizontal alignment.
 
@@ -87,47 +85,61 @@ def test_width(string, align, width, expected):
     assert actual == expected
 
 
-@pytest.mark.parametrize('string,align,height,expected', [
-    ('test', '', 1, ['test']),
-    (Color('{blue}Test{/blue}'), '', 1, ['\x1b[34mTest\x1b[39m']),
-    (Fore.BLUE + 'Test' + Fore.RESET, '', 1, ['\x1b[34mTest\x1b[39m']),
-    (colored('Test', 'blue'), '', 1, ['\x1b[34mTest\x1b[0m']),
-    ('蓝色', '', 1, ['蓝色']),
-    (u'שלום', '', 1, [u'\u05e9\u05dc\u05d5\u05dd']),
-    (u'معرب', '', 1, [u'\u0645\u0639\u0631\u0628']),
-
-    ('test', '', 2, ['test', '    ']),
-    (Color('{blue}Test{/blue}'), '', 2, ['\x1b[34mTest\x1b[39m', '    ']),
-    (Fore.BLUE + 'Test' + Fore.RESET, '', 2, ['\x1b[34mTest\x1b[39m', '    ']),
-    (colored('Test', 'blue'), '', 2, ['\x1b[34mTest\x1b[0m', '    ']),
-    ('蓝色', '', 2, ['蓝色', '    ']),
-    (u'שלום', '', 2, [u'\u05e9\u05dc\u05d5\u05dd', '    ']),
-    (u'معرب', '', 2, [u'\u0645\u0639\u0631\u0628', '    ']),
-
-    ('test', 'top', 2, ['test', '    ']),
-    (Color('{blue}Test{/blue}'), 'top', 2, ['\x1b[34mTest\x1b[39m', '    ']),
-    (Fore.BLUE + 'Test' + Fore.RESET, 'top', 2, ['\x1b[34mTest\x1b[39m', '    ']),
-    (colored('Test', 'blue'), 'top', 2, ['\x1b[34mTest\x1b[0m', '    ']),
-    ('蓝色', 'top', 2, ['蓝色', '    ']),
-    (u'שלום', 'top', 2, [u'\u05e9\u05dc\u05d5\u05dd', '    ']),
-    (u'معرب', 'top', 2, [u'\u0645\u0639\u0631\u0628', '    ']),
-
-    ('test', 'bottom', 2, ['    ', 'test']),
-    (Color('{blue}Test{/blue}'), 'bottom', 2, ['    ', '\x1b[34mTest\x1b[39m']),
-    (Fore.BLUE + 'Test' + Fore.RESET, 'bottom', 2, ['    ', '\x1b[34mTest\x1b[39m']),
-    (colored('Test', 'blue'), 'bottom', 2, ['    ', '\x1b[34mTest\x1b[0m']),
-    ('蓝色', 'bottom', 2, ['    ', '蓝色']),
-    (u'שלום', 'bottom', 2, ['    ', u'\u05e9\u05dc\u05d5\u05dd']),
-    (u'معرب', 'bottom', 2, ['    ', u'\u0645\u0639\u0631\u0628']),
-
-    ('test', 'middle', 3, ['    ', 'test', '    ']),
-    (Color('{blue}Test{/blue}'), 'middle', 3, ['    ', '\x1b[34mTest\x1b[39m', '    ']),
-    (Fore.BLUE + 'Test' + Fore.RESET, 'middle', 3, ['    ', '\x1b[34mTest\x1b[39m', '    ']),
-    (colored('Test', 'blue'), 'middle', 3, ['    ', '\x1b[34mTest\x1b[0m', '    ']),
-    ('蓝色', 'middle', 3, ['    ', '蓝色', '    ']),
-    (u'שלום', 'middle', 3, ['    ', u'\u05e9\u05dc\u05d5\u05dd', '    ']),
-    (u'معرب', 'middle', 3, ['    ', u'\u0645\u0639\u0631\u0628', '    ']),
-])
+@pytest.mark.parametrize(
+    "string,align,height,expected",
+    [
+        ("test", "", 1, ["test"]),
+        (Color("{blue}Test{/blue}"), "", 1, ["\x1b[34mTest\x1b[39m"]),
+        (Fore.BLUE + "Test" + Fore.RESET, "", 1, ["\x1b[34mTest\x1b[39m"]),
+        (colored("Test", "blue"), "", 1, ["\x1b[34mTest\x1b[0m"]),
+        ("蓝色", "", 1, ["蓝色"]),
+        ("שלום", "", 1, ["\u05e9\u05dc\u05d5\u05dd"]),
+        ("معرب", "", 1, ["\u0645\u0639\u0631\u0628"]),
+        ("test", "", 2, ["test", "    "]),
+        (Color("{blue}Test{/blue}"), "", 2, ["\x1b[34mTest\x1b[39m", "    "]),
+        (Fore.BLUE + "Test" + Fore.RESET, "", 2, ["\x1b[34mTest\x1b[39m", "    "]),
+        (colored("Test", "blue"), "", 2, ["\x1b[34mTest\x1b[0m", "    "]),
+        ("蓝色", "", 2, ["蓝色", "    "]),
+        ("שלום", "", 2, ["\u05e9\u05dc\u05d5\u05dd", "    "]),
+        ("معرب", "", 2, ["\u0645\u0639\u0631\u0628", "    "]),
+        ("test", "top", 2, ["test", "    "]),
+        (Color("{blue}Test{/blue}"), "top", 2, ["\x1b[34mTest\x1b[39m", "    "]),
+        (Fore.BLUE + "Test" + Fore.RESET, "top", 2, ["\x1b[34mTest\x1b[39m", "    "]),
+        (colored("Test", "blue"), "top", 2, ["\x1b[34mTest\x1b[0m", "    "]),
+        ("蓝色", "top", 2, ["蓝色", "    "]),
+        ("שלום", "top", 2, ["\u05e9\u05dc\u05d5\u05dd", "    "]),
+        ("معرب", "top", 2, ["\u0645\u0639\u0631\u0628", "    "]),
+        ("test", "bottom", 2, ["    ", "test"]),
+        (Color("{blue}Test{/blue}"), "bottom", 2, ["    ", "\x1b[34mTest\x1b[39m"]),
+        (
+            Fore.BLUE + "Test" + Fore.RESET,
+            "bottom",
+            2,
+            ["    ", "\x1b[34mTest\x1b[39m"],
+        ),
+        (colored("Test", "blue"), "bottom", 2, ["    ", "\x1b[34mTest\x1b[0m"]),
+        ("蓝色", "bottom", 2, ["    ", "蓝色"]),
+        ("שלום", "bottom", 2, ["    ", "\u05e9\u05dc\u05d5\u05dd"]),
+        ("معرب", "bottom", 2, ["    ", "\u0645\u0639\u0631\u0628"]),
+        ("test", "middle", 3, ["    ", "test", "    "]),
+        (
+            Color("{blue}Test{/blue}"),
+            "middle",
+            3,
+            ["    ", "\x1b[34mTest\x1b[39m", "    "],
+        ),
+        (
+            Fore.BLUE + "Test" + Fore.RESET,
+            "middle",
+            3,
+            ["    ", "\x1b[34mTest\x1b[39m", "    "],
+        ),
+        (colored("Test", "blue"), "middle", 3, ["    ", "\x1b[34mTest\x1b[0m", "    "]),
+        ("蓝色", "middle", 3, ["    ", "蓝色", "    "]),
+        ("שלום", "middle", 3, ["    ", "\u05e9\u05dc\u05d5\u05dd", "    "]),
+        ("معرب", "middle", 3, ["    ", "\u0645\u0639\u0631\u0628", "    "]),
+    ],
+)
 def test_height(string, align, height, expected):
     """Test height and vertical alignment.
 
@@ -140,57 +152,68 @@ def test_height(string, align, height, expected):
     assert actual == expected
 
 
-@pytest.mark.parametrize('string,align,expected', [
-    ('', '', ['.......', '.......', '.......', '.......', '.......']),
-    ('\n', '', ['.......', '.......', '.......', '.......', '.......']),
-    ('a\nb\nc', '', ['.......', '.a.....', '.b.....', '.c.....', '.......']),
-    ('test', '', ['.......', '.test..', '.......', '.......', '.......']),
-
-    ('', 'left', ['.......', '.......', '.......', '.......', '.......']),
-    ('\n', 'left', ['.......', '.......', '.......', '.......', '.......']),
-    ('a\nb\nc', 'left', ['.......', '.a.....', '.b.....', '.c.....', '.......']),
-    ('test', 'left', ['.......', '.test..', '.......', '.......', '.......']),
-
-    ('', 'right', ['.......', '.......', '.......', '.......', '.......']),
-    ('\n', 'right', ['.......', '.......', '.......', '.......', '.......']),
-    ('a\nb\nc', 'right', ['.......', '.....a.', '.....b.', '.....c.', '.......']),
-    ('test', 'right', ['.......', '..test.', '.......', '.......', '.......']),
-
-    ('', 'center', ['.......', '.......', '.......', '.......', '.......']),
-    ('\n', 'center', ['.......', '.......', '.......', '.......', '.......']),
-    ('a\nb\nc', 'center', ['.......', '...a...', '...b...', '...c...', '.......']),
-    ('test', 'center', ['.......', '..test.', '.......', '.......', '.......']),
-
-    ('', 'top', ['.......', '.......', '.......', '.......', '.......']),
-    ('\n', 'top', ['.......', '.......', '.......', '.......', '.......']),
-    ('a\nb\nc', 'top', ['.......', '.a.....', '.b.....', '.c.....', '.......']),
-    ('test', 'top', ['.......', '.test..', '.......', '.......', '.......']),
-
-    ('', 'bottom', ['.......', '.......', '.......', '.......', '.......']),
-    ('\n', 'bottom', ['.......', '.......', '.......', '.......', '.......']),
-    ('a\nb\nc', 'bottom', ['.......', '.a.....', '.b.....', '.c.....', '.......']),
-    ('test', 'bottom', ['.......', '.......', '.......', '.test..', '.......']),
-
-    ('', 'middle', ['.......', '.......', '.......', '.......', '.......']),
-    ('\n', 'middle', ['.......', '.......', '.......', '.......', '.......']),
-    ('a\nb\nc', 'middle', ['.......', '.a.....', '.b.....', '.c.....', '.......']),
-    ('test', 'middle', ['.......', '.......', '.test..', '.......', '.......']),
-
-    (
-        u'蓝色\nשלום\nمعرب',
-        '',
-        ['.......', u'.蓝色..', u'.\u05e9\u05dc\u05d5\u05dd..', u'.\u0645\u0639\u0631\u0628..', '.......']
-    ),
-
-    (
-        '\n'.join((Color('{blue}Test{/blue}'), Fore.BLUE + 'Test' + Fore.RESET, colored('Test', 'blue'))),
-        '',
-        ['.......', '.\x1b[34mTest\x1b[39m..', '.\x1b[34mTest\x1b[39m..', '.\x1b[34mTest\x1b[0m..', '.......']
-    ),
-
-    # (Color('{blue}A\nB{/blue}'), '', '.......\n.\x1b[34mA\x1b[39m.....\n.\x1b[34mB\x1b[39m.....\n.......\n.......'),
-
-])
+@pytest.mark.parametrize(
+    "string,align,expected",
+    [
+        ("", "", [".......", ".......", ".......", ".......", "......."]),
+        ("\n", "", [".......", ".......", ".......", ".......", "......."]),
+        ("a\nb\nc", "", [".......", ".a.....", ".b.....", ".c.....", "......."]),
+        ("test", "", [".......", ".test..", ".......", ".......", "......."]),
+        ("", "left", [".......", ".......", ".......", ".......", "......."]),
+        ("\n", "left", [".......", ".......", ".......", ".......", "......."]),
+        ("a\nb\nc", "left", [".......", ".a.....", ".b.....", ".c.....", "......."]),
+        ("test", "left", [".......", ".test..", ".......", ".......", "......."]),
+        ("", "right", [".......", ".......", ".......", ".......", "......."]),
+        ("\n", "right", [".......", ".......", ".......", ".......", "......."]),
+        ("a\nb\nc", "right", [".......", ".....a.", ".....b.", ".....c.", "......."]),
+        ("test", "right", [".......", "..test.", ".......", ".......", "......."]),
+        ("", "center", [".......", ".......", ".......", ".......", "......."]),
+        ("\n", "center", [".......", ".......", ".......", ".......", "......."]),
+        ("a\nb\nc", "center", [".......", "...a...", "...b...", "...c...", "......."]),
+        ("test", "center", [".......", "..test.", ".......", ".......", "......."]),
+        ("", "top", [".......", ".......", ".......", ".......", "......."]),
+        ("\n", "top", [".......", ".......", ".......", ".......", "......."]),
+        ("a\nb\nc", "top", [".......", ".a.....", ".b.....", ".c.....", "......."]),
+        ("test", "top", [".......", ".test..", ".......", ".......", "......."]),
+        ("", "bottom", [".......", ".......", ".......", ".......", "......."]),
+        ("\n", "bottom", [".......", ".......", ".......", ".......", "......."]),
+        ("a\nb\nc", "bottom", [".......", ".a.....", ".b.....", ".c.....", "......."]),
+        ("test", "bottom", [".......", ".......", ".......", ".test..", "......."]),
+        ("", "middle", [".......", ".......", ".......", ".......", "......."]),
+        ("\n", "middle", [".......", ".......", ".......", ".......", "......."]),
+        ("a\nb\nc", "middle", [".......", ".a.....", ".b.....", ".c.....", "......."]),
+        ("test", "middle", [".......", ".......", ".test..", ".......", "......."]),
+        (
+            "蓝色\nשלום\nمعرب",
+            "",
+            [
+                ".......",
+                ".蓝色..",
+                ".\u05e9\u05dc\u05d5\u05dd..",
+                ".\u0645\u0639\u0631\u0628..",
+                ".......",
+            ],
+        ),
+        (
+            "\n".join(
+                (
+                    Color("{blue}Test{/blue}"),
+                    Fore.BLUE + "Test" + Fore.RESET,
+                    colored("Test", "blue"),
+                )
+            ),
+            "",
+            [
+                ".......",
+                ".\x1b[34mTest\x1b[39m..",
+                ".\x1b[34mTest\x1b[39m..",
+                ".\x1b[34mTest\x1b[0m..",
+                ".......",
+            ],
+        ),
+        # (Color('{blue}A\nB{/blue}'), '', '.......\n.\x1b[34mA\x1b[39m.....\n.\x1b[34mB\x1b[39m.....\n.......\n.......'),
+    ],
+)
 def test_odd_width_height_pad_space(string, align, expected):
     """Test odd number width, height, padding, and dots for whitespaces.
 
@@ -198,5 +221,5 @@ def test_odd_width_height_pad_space(string, align, expected):
     :param str align: Alignment in any dimension but one at a time.
     :param list expected: Expected output string.
     """
-    actual = align_and_pad_cell(string, (align,), (5, 3), (1, 1, 1, 1), '.')
+    actual = align_and_pad_cell(string, (align,), (5, 3), (1, 1, 1, 1), ".")
     assert actual == expected

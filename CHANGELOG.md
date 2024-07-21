@@ -4,7 +4,20 @@ Changelog
 
 This project adheres to `Semantic Versioning <http://semver.org/>`_.
 
-3.1.7 - 2016-12-7
+4.0.0 - 2024-1-1
+------------------
+
+Changed
+    * New namespace and package name: terminaltables3
+    * No changes made to the License.
+
+Added
+    * Started on type annotations
+
+Removed
+    * Removed Python 2 support. Possibly supports earlier 3.x versions but no longer checking in build script.
+
+3.1.7 - 2021-1-1
 ------------------
 
 Added

@@ -1,4 +1,3 @@
-# coding: utf-8
 """Test function in module."""
 
 import pytest
@@ -6,18 +5,20 @@ from colorama import Fore
 from colorclass import Color
 from termcolor import colored
 
-from terminaltables.width_and_alignment import max_dimensions
+from terminaltables3.width_and_alignment import max_dimensions
 
 
-@pytest.mark.parametrize('table_data,expected_w,expected_h', [
-    ([[]], [], [0]),
-    ([['']], [0], [0]),
-    ([['', '']], [0, 0], [0]),
-
-    ([[], []], [], [0, 0]),
-    ([[''], ['']], [0], [0, 0]),
-    ([['', ''], ['', '']], [0, 0], [0, 0]),
-])
+@pytest.mark.parametrize(
+    "table_data,expected_w,expected_h",
+    [
+        ([[]], [], [0]),
+        ([[""]], [0], [0]),
+        ([["", ""]], [0, 0], [0]),
+        ([[], []], [], [0, 0]),
+        ([[""], [""]], [0], [0, 0]),
+        ([["", ""], ["", ""]], [0, 0], [0, 0]),
+    ],
+)
 def test_zero_length(table_data, expected_w, expected_h):
     """Test zero-length or empty tables.
 
@@ -32,40 +33,60 @@ def test_zero_length(table_data, expected_w, expected_h):
 def test_single_line():
     """Test widths."""
     table_data = [
-        ['Name', 'Color', 'Type'],
-        ['Avocado', 'green', 'nut'],
-        ['Tomato', 'red', 'fruit'],
-        ['Lettuce', 'green', 'vegetable'],
+        ["Name", "Color", "Type"],
+        ["Avocado", "green", "nut"],
+        ["Tomato", "red", "fruit"],
+        ["Lettuce", "green", "vegetable"],
     ]
-    assert max_dimensions(table_data, 1, 1) == ([7, 5, 9], [1, 1, 1, 1], [9, 7, 11], [1, 1, 1, 1])
+    assert max_dimensions(table_data, 1, 1) == (
+        [7, 5, 9],
+        [1, 1, 1, 1],
+        [9, 7, 11],
+        [1, 1, 1, 1],
+    )
 
-    table_data.append(['Watermelon', 'green', 'fruit'])
-    assert max_dimensions(table_data, 2, 2) == ([10, 5, 9], [1, 1, 1, 1, 1], [14, 9, 13], [1, 1, 1, 1, 1])
+    table_data.append(["Watermelon", "green", "fruit"])
+    assert max_dimensions(table_data, 2, 2) == (
+        [10, 5, 9],
+        [1, 1, 1, 1, 1],
+        [14, 9, 13],
+        [1, 1, 1, 1, 1],
+    )
 
 
 def test_multi_line():
     """Test heights."""
     table_data = [
-        ['One\nTwo', 'Buckle\nMy\nShoe'],
+        ["One\nTwo", "Buckle\nMy\nShoe"],
     ]
     assert max_dimensions(table_data, 0, 0, 1, 1) == ([3, 6], [3], [3, 6], [5])
 
     table_data = [
-        ['Show', 'Characters'],
-        ['Rugrats', ('Tommy Pickles, Chuckie Finster, Phillip DeVille, Lillian DeVille, Angelica Pickles,\n'
-                     'Susie Carmichael, Dil Pickles, Kimi Finster, Spike')],
-        ['South Park', 'Stan Marsh, Kyle Broflovski, Eric Cartman, Kenny McCormick']
+        ["Show", "Characters"],
+        [
+            "Rugrats",
+            (
+                "Tommy Pickles, Chuckie Finster, Phillip DeVille, Lillian DeVille, Angelica Pickles,\n"
+                "Susie Carmichael, Dil Pickles, Kimi Finster, Spike"
+            ),
+        ],
+        ["South Park", "Stan Marsh, Kyle Broflovski, Eric Cartman, Kenny McCormick"],
     ]
-    assert max_dimensions(table_data, 0, 0, 2, 2) == ([10, 83], [1, 2, 1], [10, 83], [5, 6, 5])
+    assert max_dimensions(table_data, 0, 0, 2, 2) == (
+        [10, 83],
+        [1, 2, 1],
+        [10, 83],
+        [5, 6, 5],
+    )
 
 
 def test_trailing_newline():
     r"""Test with trailing \n."""
     table_data = [
-        ['Row One\n<blank>'],
-        ['<blank>\nRow Two'],
-        ['Row Three\n'],
-        ['\nRow Four'],
+        ["Row One\n<blank>"],
+        ["<blank>\nRow Two"],
+        ["Row Three\n"],
+        ["\nRow Four"],
     ]
     assert max_dimensions(table_data) == ([9], [2, 2, 2, 2], [9], [2, 2, 2, 2])
 
@@ -73,21 +94,21 @@ def test_trailing_newline():
 def test_colors_cjk_rtl():
     """Test color text, CJK characters, and RTL characters."""
     table_data = [
-        [Color('{blue}Test{/blue}')],
-        [Fore.BLUE + 'Test' + Fore.RESET],
-        [colored('Test', 'blue')],
+        [Color("{blue}Test{/blue}")],
+        [Fore.BLUE + "Test" + Fore.RESET],
+        [colored("Test", "blue")],
     ]
     assert max_dimensions(table_data) == ([4], [1, 1, 1], [4], [1, 1, 1])
 
     table_data = [
-        ['蓝色'],
-        ['世界你好'],
+        ["蓝色"],
+        ["世界你好"],
     ]
     assert max_dimensions(table_data) == ([8], [1, 1], [8], [1, 1])
 
     table_data = [
-        ['שלום'],
-        ['معرب'],
+        ["שלום"],
+        ["معرب"],
     ]
     assert max_dimensions(table_data) == ([4], [1, 1], [4], [1, 1])
 

@@ -94,3 +94,5 @@ test*.png
 .idea/
 requirements*.txt
 .DS_Store
+
+.build_history/

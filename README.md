@@ -1,11 +1,19 @@
-## terminaltables
-
 # What is it
 
 Easily draw tables in terminal/console applications from a list of lists of strings. Supports multi-line rows.
 
-- Python 2.6, 2.7, PyPy, PyPy3, 3.3, 3.4, and 3.5+ supported on Linux and OS X.
-- Python 2.7, 3.3, 3.4, and 3.5+ supported on Windows (both 32 and 64 bit versions of Python).
+Tested on Python 3.8+
+
+**This is a fork of the terminaltables project. Which is archived and unmaintained. This library is in a new namespace
+but should otherwise be a drop in replacement. Maintaining goals consist of maintaining ecosystem compatibility, type
+annotations and responding to community pull requests.**
+
+To Upgrade
+==========
+Replace all instances of `terminaltables` with `terminaltables3` in your code. If other libraries depend on `terminaltables`
+in your venv they will not conflict because it is a new namespace.
+
+As of right now, the documentation as the robpol86 version.
 
 📖 Full documentation: https://robpol86.github.io/terminaltables
 
@@ -15,19 +23,19 @@ Quickstart
 Install:
 
 ```bash
-pip install terminaltables
+pip install terminaltables3
 ```
 
 Usage:
 
 ```python
-from terminaltables import AsciiTable
+from terminaltables3 import AsciiTable
 
 table_data = [
-    ['Heading1', 'Heading2'],
-    ['row1 column1', 'row1 column2'],
-    ['row2 column1', 'row2 column2'],
-    ['row3 column1', 'row3 column2']
+    ["Heading1", "Heading2"],
+    ["row1 column1", "row1 column2"],
+    ["row2 column1", "row2 column2"],
+    ["row3 column1", "row3 column2"],
 ]
 table = AsciiTable(table_data)
 print

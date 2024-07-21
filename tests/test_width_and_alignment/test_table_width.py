@@ -1,26 +1,28 @@
 """Test function in module."""
 
-from terminaltables.width_and_alignment import max_dimensions, table_width
+from terminaltables3.width_and_alignment import max_dimensions, table_width
 
 
 def test_empty():
     """Test with zero-length cells."""
-    assert table_width(max_dimensions([['']])[2], 0, 0) == 0
-    assert table_width(max_dimensions([['', '', '']])[2], 0, 0) == 0
-    assert table_width(max_dimensions([['', '', ''], ['', '', '']])[2], 0, 0) == 0
+    assert table_width(max_dimensions([[""]])[2], 0, 0) == 0
+    assert table_width(max_dimensions([["", "", ""]])[2], 0, 0) == 0
+    assert table_width(max_dimensions([["", "", ""], ["", "", ""]])[2], 0, 0) == 0
 
-    assert table_width(max_dimensions([['']], 1, 1)[2], 2, 1) == 4
-    assert table_width(max_dimensions([['', '', '']], 1, 1)[2], 2, 1) == 10
-    assert table_width(max_dimensions([['', '', ''], ['', '', '']], 1, 1)[2], 2, 1) == 10
+    assert table_width(max_dimensions([[""]], 1, 1)[2], 2, 1) == 4
+    assert table_width(max_dimensions([["", "", ""]], 1, 1)[2], 2, 1) == 10
+    assert (
+        table_width(max_dimensions([["", "", ""], ["", "", ""]], 1, 1)[2], 2, 1) == 10
+    )
 
 
 def test_single_line():
     """Test with single-line cells."""
     table_data = [
-        ['Name', 'Color', 'Type'],
-        ['Avocado', 'green', 'nut'],
-        ['Tomato', 'red', 'fruit'],
-        ['Lettuce', 'green', 'vegetable'],
+        ["Name", "Color", "Type"],
+        ["Avocado", "green", "nut"],
+        ["Tomato", "red", "fruit"],
+        ["Lettuce", "green", "vegetable"],
     ]
 
     # '| Lettuce | green | vegetable |'
@@ -48,11 +50,11 @@ def test_single_line():
     assert table_width(outer_widths, outer, inner) == 40
 
     table_data = [
-        ['Name', 'Color', 'Type'],
-        ['Avocado', 'green', 'nut'],
-        ['Tomato', 'red', 'fruit'],
-        ['Lettuce', 'green', 'vegetable'],
-        ['Watermelon', 'green', 'fruit'],
+        ["Name", "Color", "Type"],
+        ["Avocado", "green", "nut"],
+        ["Tomato", "red", "fruit"],
+        ["Lettuce", "green", "vegetable"],
+        ["Watermelon", "green", "fruit"],
     ]
     outer, inner, outer_widths = 2, 1, max_dimensions(table_data, 1, 1)[2]
     assert table_width(outer_widths, outer, inner) == 34
@@ -61,10 +63,15 @@ def test_single_line():
 def test_multi_line():
     """Test with multi-line cells."""
     table_data = [
-        ['Show', 'Characters'],
-        ['Rugrats', ('Tommy Pickles, Chuckie Finster, Phillip DeVille, Lillian DeVille, Angelica Pickles,\n'
-                     'Susie Carmichael, Dil Pickles, Kimi Finster, Spike')],
-        ['South Park', 'Stan Marsh, Kyle Broflovski, Eric Cartman, Kenny McCormick']
+        ["Show", "Characters"],
+        [
+            "Rugrats",
+            (
+                "Tommy Pickles, Chuckie Finster, Phillip DeVille, Lillian DeVille, Angelica Pickles,\n"
+                "Susie Carmichael, Dil Pickles, Kimi Finster, Spike"
+            ),
+        ],
+        ["South Park", "Stan Marsh, Kyle Broflovski, Eric Cartman, Kenny McCormick"],
     ]
     outer, inner, outer_widths = 2, 1, max_dimensions(table_data, 1, 1)[2]
     assert table_width(outer_widths, outer, inner) == 100

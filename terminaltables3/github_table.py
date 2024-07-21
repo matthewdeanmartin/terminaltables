@@ -1,7 +1,9 @@
 """GithubFlavoredMarkdownTable class."""
 
-from terminaltables.ascii_table import AsciiTable
-from terminaltables.build import combine
+from typing import Sequence
+
+from terminaltables3.ascii_table import AsciiTable
+from terminaltables3.build import combine
 
 
 class GithubFlavoredMarkdownTable(AsciiTable):
@@ -13,13 +15,13 @@ class GithubFlavoredMarkdownTable(AsciiTable):
     :ivar dict justify_columns: Horizontal justification. Keys are column indexes (int). Values are right/left/center.
     """
 
-    def __init__(self, table_data):
+    def __init__(self, table_data: Sequence[Sequence[str]]):
         """Constructor.
 
         :param iter table_data: List (empty or list of lists of strings) representing the table.
         """
         # Github flavored markdown table won't support title.
-        super(GithubFlavoredMarkdownTable, self).__init__(table_data)
+        super().__init__(table_data)
 
     def horizontal_border(self, _, outer_widths):
         """Handle the GitHub heading border.
@@ -38,16 +40,18 @@ class GithubFlavoredMarkdownTable(AsciiTable):
         intersect = self.CHAR_INNER_VERTICAL
         right = self.CHAR_OUTER_RIGHT_VERTICAL
 
-        columns = list()
+        columns = []
         for i, width in enumerate(outer_widths):
             justify = self.justify_columns.get(i)
-            width = max(3, width)  # Width should be at least 3 so justification can be applied.
-            if justify == 'left':
-                columns.append(':' + horizontal * (width - 1))
-            elif justify == 'right':
-                columns.append(horizontal * (width - 1) + ':')
-            elif justify == 'center':
-                columns.append(':' + horizontal * (width - 2) + ':')
+            width = max(
+                3, width
+            )  # Width should be at least 3 so justification can be applied.
+            if justify == "left":
+                columns.append(":" + horizontal * (width - 1))
+            elif justify == "right":
+                columns.append(horizontal * (width - 1) + ":")
+            elif justify == "center":
+                columns.append(":" + horizontal * (width - 2) + ":")
             else:
                 columns.append(horizontal * width)
 
@@ -63,8 +67,7 @@ class GithubFlavoredMarkdownTable(AsciiTable):
         """
         for i, row in enumerate(self.table_data):
             # Yield the row line by line (e.g. multi-line rows).
-            for line in self.gen_row_lines(row, 'row', inner_widths, inner_heights[i]):
-                yield line
+            yield from self.gen_row_lines(row, "row", inner_widths, inner_heights[i])
             # Yield heading separator.
             if i == 0:
                 yield self.horizontal_border(None, outer_widths)

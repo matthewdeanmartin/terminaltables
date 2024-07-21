@@ -2,36 +2,37 @@
 
 import re
 import unicodedata
+from typing import Sequence, Tuple
 
-from terminaltables.terminal_io import terminal_size
+from terminaltables3.terminal_io import terminal_size
 
-RE_COLOR_ANSI = re.compile(r'(\033\[[\d;]+m)')
+RE_COLOR_ANSI = re.compile(r"(\033\[[\d;]+m)")
 
 
-def visible_width(string):
+def visible_width(string: str) -> int:
     """Get the visible width of a unicode string.
 
     Some CJK unicode characters are more than one byte unlike ASCII and latin unicode characters.
 
-    From: https://github.com/Robpol86/terminaltables/pull/9
+    From: https://github.com/Robpol86/terminaltables3/pull/9
 
     :param str string: String to measure.
 
     :return: String's width.
     :rtype: int
     """
-    if '\033' in string:
-        string = RE_COLOR_ANSI.sub('', string)
+    if "\033" in string:
+        string = RE_COLOR_ANSI.sub("", string)
 
     # Convert to unicode.
     try:
-        string = string.decode('u8')
+        string = string.decode("u8")
     except (AttributeError, UnicodeEncodeError):
         pass
 
     width = 0
     for char in string:
-        if unicodedata.east_asian_width(char) in ('F', 'W'):
+        if unicodedata.east_asian_width(char) in ("F", "W"):
             width += 2
         else:
             width += 1
@@ -39,7 +40,13 @@ def visible_width(string):
     return width
 
 
-def align_and_pad_cell(string, align, inner_dimensions, padding, space=' '):
+def align_and_pad_cell(
+    string: str,
+    align: Tuple,
+    inner_dimensions: Tuple,
+    padding: Sequence[int],
+    space: str = " ",
+) -> list[str]:
     """Align a string horizontally and vertically. Also add additional padding in both dimensions.
 
     :param str string: Input string to operate on.
@@ -51,37 +58,55 @@ def align_and_pad_cell(string, align, inner_dimensions, padding, space=' '):
     :return: Padded cell split into lines.
     :rtype: list
     """
-    if not hasattr(string, 'splitlines'):
+    if not hasattr(string, "splitlines"):
         string = str(string)
 
     # Handle trailing newlines or empty strings, str.splitlines() does not satisfy.
-    lines = string.splitlines() or ['']
-    if string.endswith('\n'):
-        lines.append('')
+    lines = string.splitlines() or [""]
+    if string.endswith("\n"):
+        lines.append("")
 
     # Vertically align and pad.
-    if 'bottom' in align:
-        lines = ([''] * (inner_dimensions[1] - len(lines) + padding[2])) + lines + ([''] * padding[3])
-    elif 'middle' in align:
+    if "bottom" in align:
+        lines = (
+            ([""] * (inner_dimensions[1] - len(lines) + padding[2]))
+            + lines
+            + ([""] * padding[3])
+        )
+    elif "middle" in align:
         delta = inner_dimensions[1] - len(lines)
-        lines = ([''] * (delta // 2 + delta % 2 + padding[2])) + lines + ([''] * (delta // 2 + padding[3]))
+        lines = (
+            ([""] * (delta // 2 + delta % 2 + padding[2]))
+            + lines
+            + ([""] * (delta // 2 + padding[3]))
+        )
     else:
-        lines = ([''] * padding[2]) + lines + ([''] * (inner_dimensions[1] - len(lines) + padding[3]))
+        lines = (
+            ([""] * padding[2])
+            + lines
+            + ([""] * (inner_dimensions[1] - len(lines) + padding[3]))
+        )
 
     # Horizontally align and pad.
     for i, line in enumerate(lines):
         new_width = inner_dimensions[0] + len(line) - visible_width(line)
-        if 'right' in align:
+        if "right" in align:
             lines[i] = line.rjust(padding[0] + new_width, space) + (space * padding[1])
-        elif 'center' in align:
-            lines[i] = (space * padding[0]) + line.center(new_width, space) + (space * padding[1])
+        elif "center" in align:
+            lines[i] = (
+                (space * padding[0])
+                + line.center(new_width, space)
+                + (space * padding[1])
+            )
         else:
             lines[i] = (space * padding[0]) + line.ljust(new_width + padding[1], space)
 
     return lines
 
 
-def max_dimensions(table_data, padding_left=0, padding_right=0, padding_top=0, padding_bottom=0):
+def max_dimensions(
+    table_data, padding_left=0, padding_right=0, padding_top=0, padding_bottom=0
+):
     """Get maximum widths of each column and maximum height of each row.
 
     :param iter table_data: List of list of strings (unmodified table data).
@@ -99,12 +124,15 @@ def max_dimensions(table_data, padding_left=0, padding_right=0, padding_top=0, p
     # Find max width and heights.
     for j, row in enumerate(table_data):
         for i, cell in enumerate(row):
-            if not hasattr(cell, 'count') or not hasattr(cell, 'splitlines'):
+            if not hasattr(cell, "count") or not hasattr(cell, "splitlines"):
                 cell = str(cell)
             if not cell:
                 continue
-            inner_heights[j] = max(inner_heights[j], cell.count('\n') + 1)
-            inner_widths[i] = max(inner_widths[i], *[visible_width(l) for l in cell.splitlines()])
+            inner_heights[j] = max(inner_heights[j], cell.count("\n") + 1)
+            inner_widths[i] = max(
+                inner_widths[i],
+                *[visible_width(the_line) for the_line in cell.splitlines()]
+            )
 
     # Calculate with padding.
     outer_widths = [padding_left + i + padding_right for i in inner_widths]
@@ -113,7 +141,13 @@ def max_dimensions(table_data, padding_left=0, padding_right=0, padding_top=0, p
     return inner_widths, inner_heights, outer_widths, outer_heights
 
 
-def column_max_width(inner_widths, column_number, outer_border, inner_border, padding):
+def column_max_width(
+    inner_widths: Sequence[int],
+    column_number: int,
+    outer_border: int,
+    inner_border: int,
+    padding: int,
+) -> int:
     """Determine the maximum width of a column based on the current terminal width.
 
     :param iter inner_widths: List of widths (no padding) for each column.
@@ -138,7 +172,9 @@ def column_max_width(inner_widths, column_number, outer_border, inner_border, pa
     return terminal_width - data_space - non_data_space
 
 
-def table_width(outer_widths, outer_border, inner_border):
+def table_width(
+    outer_widths: Sequence[int], outer_border: int, inner_border: int
+) -> int:
     """Determine the width of the entire table including borders and padding.
 
     :param iter outer_widths: List of widths (with padding) for each column.

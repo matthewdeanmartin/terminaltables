@@ -2,7 +2,7 @@
 
 import pytest
 
-from terminaltables.width_and_alignment import column_max_width, max_dimensions
+from terminaltables3.width_and_alignment import column_max_width, max_dimensions
 
 
 @pytest.fixture(autouse=True)
@@ -11,27 +11,35 @@ def patch(monkeypatch):
 
     :param monkeypatch: pytest fixture.
     """
-    monkeypatch.setattr('terminaltables.width_and_alignment.terminal_size', lambda: (79, 24))
+    monkeypatch.setattr(
+        "terminaltables3.width_and_alignment.terminal_size", lambda: (79, 24)
+    )
 
 
 def test_empty():
     """Test with zero-length cells."""
-    assert column_max_width(max_dimensions([['']])[0], 0, 0, 0, 0) == 79
-    assert column_max_width(max_dimensions([['', '', '']])[0], 0, 0, 0, 0) == 79
-    assert column_max_width(max_dimensions([['', '', ''], ['', '', '']])[0], 0, 0, 0, 0) == 79
+    assert column_max_width(max_dimensions([[""]])[0], 0, 0, 0, 0) == 79
+    assert column_max_width(max_dimensions([["", "", ""]])[0], 0, 0, 0, 0) == 79
+    assert (
+        column_max_width(max_dimensions([["", "", ""], ["", "", ""]])[0], 0, 0, 0, 0)
+        == 79
+    )
 
-    assert column_max_width(max_dimensions([['']])[0], 0, 2, 1, 2) == 75
-    assert column_max_width(max_dimensions([['', '', '']])[0], 0, 2, 1, 2) == 69
-    assert column_max_width(max_dimensions([['', '', ''], ['', '', '']])[0], 0, 2, 1, 2) == 69
+    assert column_max_width(max_dimensions([[""]])[0], 0, 2, 1, 2) == 75
+    assert column_max_width(max_dimensions([["", "", ""]])[0], 0, 2, 1, 2) == 69
+    assert (
+        column_max_width(max_dimensions([["", "", ""], ["", "", ""]])[0], 0, 2, 1, 2)
+        == 69
+    )
 
 
 def test_single_line():
     """Test with single-line cells."""
     table_data = [
-        ['Name', 'Color', 'Type'],
-        ['Avocado', 'green', 'nut'],
-        ['Tomato', 'red', 'fruit'],
-        ['Lettuce', 'green', 'vegetable'],
+        ["Name", "Color", "Type"],
+        ["Avocado", "green", "nut"],
+        ["Tomato", "red", "fruit"],
+        ["Lettuce", "green", "vegetable"],
     ]
     inner_widths = max_dimensions(table_data)[0]
 
@@ -72,11 +80,11 @@ def test_single_line():
     assert column_max_width(inner_widths, 2, outer, inner, padding) == 48
 
     table_data = [
-        ['Name', 'Color', 'Type'],
-        ['Avocado', 'green', 'nut'],
-        ['Tomato', 'red', 'fruit'],
-        ['Lettuce', 'green', 'vegetable'],
-        ['Watermelon', 'green', 'fruit'],
+        ["Name", "Color", "Type"],
+        ["Avocado", "green", "nut"],
+        ["Tomato", "red", "fruit"],
+        ["Lettuce", "green", "vegetable"],
+        ["Watermelon", "green", "fruit"],
     ]
     inner_widths = max_dimensions(table_data)[0]
     outer, inner, padding = 2, 1, 2
@@ -91,10 +99,15 @@ def test_multi_line(monkeypatch):
     :param monkeypatch: pytest fixture.
     """
     table_data = [
-        ['Show', 'Characters'],
-        ['Rugrats', ('Tommy Pickles, Chuckie Finster, Phillip DeVille, Lillian DeVille, Angelica Pickles,\n'
-                     'Susie Carmichael, Dil Pickles, Kimi Finster, Spike')],
-        ['South Park', 'Stan Marsh, Kyle Broflovski, Eric Cartman, Kenny McCormick']
+        ["Show", "Characters"],
+        [
+            "Rugrats",
+            (
+                "Tommy Pickles, Chuckie Finster, Phillip DeVille, Lillian DeVille, Angelica Pickles,\n"
+                "Susie Carmichael, Dil Pickles, Kimi Finster, Spike"
+            ),
+        ],
+        ["South Park", "Stan Marsh, Kyle Broflovski, Eric Cartman, Kenny McCormick"],
     ]
     inner_widths = max_dimensions(table_data)[0]
     outer, inner, padding = 2, 1, 2
@@ -102,6 +115,8 @@ def test_multi_line(monkeypatch):
     assert column_max_width(inner_widths, 0, outer, inner, padding) == -11
     assert column_max_width(inner_widths, 1, outer, inner, padding) == 62
 
-    monkeypatch.setattr('terminaltables.width_and_alignment.terminal_size', lambda: (100, 24))
+    monkeypatch.setattr(
+        "terminaltables3.width_and_alignment.terminal_size", lambda: (100, 24)
+    )
     assert column_max_width(inner_widths, 0, outer, inner, padding) == 10
     assert column_max_width(inner_widths, 1, outer, inner, padding) == 83

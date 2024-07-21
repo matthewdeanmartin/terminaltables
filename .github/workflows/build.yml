@@ -1,0 +1,57 @@
+name: Build and Test
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          # cache: 'pipenv' # caching pipenv dependencies
+      - name: Install poetry and pipx
+        run: |
+          pip install poetry && pip install pipx
+
+      - name: Install global dependencies
+        run: |
+          pipx install isort && pipx install black && pipx install bandit && \
+          pipx install pylint && pipx install pre-commit && pipx install poetry
+
+      - name: Install Dependencies
+        run: poetry install --with dev
+
+      - name: Run Makefile
+        run: make check
+      - name: Run make
+        run: poetry run make publish
+      - name: Upload Package
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: packages
+          path: dist/
+          if-no-files-found: error
+          retention-days: 1
+
+
+  pypi-publish:
+    name: Upload release to PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/terminaltables3
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+    # if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+    steps:
+      - name: Get packages
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: packages
+          path: dist/
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+    needs: build
