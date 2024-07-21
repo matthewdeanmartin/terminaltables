@@ -8,15 +8,28 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-82627369-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Table Styles &mdash; terminaltables</title>
+  <title>Search &mdash; terminaltables</title>
   
 
   
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
   
 
   
@@ -33,12 +46,16 @@
   
 
   
+    <link rel="stylesheet" href="_static/banner.css" type="text/css" />
+  
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   
 
   
-    <link rel="top" title="terminaltables" href="index.html"/>
-        <link rel="prev" title="Settings" href="settings.html"/> 
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="#"/>
+    <link rel="top" title="terminaltables" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -47,6 +64,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -66,14 +84,14 @@
             
             
               <div class="version">
-                3.0.0
+                3.1.0
               </div>
             
           
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="#" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -87,11 +105,25 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <p class="caption"><span class="caption-text">General</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings.html">Settings</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Table Styles</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Table Styles</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asciitable.html">AsciiTable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singletable.html">SingleTable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doubletable.html">DoubleTable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="githubtable.html">GithubFlavoredMarkdownTable</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 </ul>
 
             
@@ -104,8 +136,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">terminaltables</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">terminaltables</a>
+        
       </nav>
 
 
@@ -114,51 +148,69 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Table Styles</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Search</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="https://github.com/robpol86/terminaltables/blob/master/docs/tables.rst" class="fa fa-github"> Edit on GitHub</a>
-          
-        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="table-styles">
-<span id="tables"></span><h1>Table Styles<a class="headerlink" href="#table-styles" title="Permalink to this headline">¶</a></h1>
-<p>TODO</p>
-</div>
+  <noscript>
+  <div id="fallback" class="admonition warning">
+    <p class="last">
+      Please activate JavaScript to enable the search
+      functionality.
+    </p>
+  </div>
+  </noscript>
 
+  
+  <div id="search-results">
+  
+  </div>
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="settings.html" class="btn btn-neutral" title="Settings" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, @Robpol86.
+        &copy; Copyright 2020, @Robpol86.
+      Last updated on Nov 13, 2020, 4:54:38 AM UTC.
 
     </p>
   </div>
@@ -173,6 +225,24 @@
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Tags</dt>
+            <dd><a href="../v3.1.0/index.html">v3.1.0</a></dd>
+        </dl>
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../switch_circleci/index.html">switch_circleci</a></dd>
+            <dd><a href="search.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
@@ -180,15 +250,17 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'3.0.0',
+            VERSION:'3.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  false
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/searchtools.js"></script>
 
   
 
@@ -204,7 +276,14 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
+  
+  <script type="text/javascript">
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+  
+  <script type="text/javascript" id="searchindexloader"></script>
    
+
 
 </body>
 </html>

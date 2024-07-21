@@ -8,7 +8,18 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-82627369-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>DoubleTable &mdash; terminaltables</title>
@@ -17,6 +28,8 @@
   
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
   
 
   
@@ -33,10 +46,15 @@
   
 
   
+    <link rel="stylesheet" href="_static/banner.css" type="text/css" />
+  
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   
 
   
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="terminaltables" href="index.html"/>
         <link rel="next" title="GithubFlavoredMarkdownTable" href="githubtable.html"/>
         <link rel="prev" title="SingleTable" href="singletable.html"/> 
@@ -48,6 +66,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -67,7 +86,7 @@
             
             
               <div class="version">
-                3.0.0
+                3.1.0
               </div>
             
           
@@ -88,7 +107,10 @@
           
             
             
-                <p class="caption"><span class="caption-text">General</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">General</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
@@ -106,6 +128,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="githubtable.html">GithubFlavoredMarkdownTable</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
 
             
           
@@ -117,8 +143,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">terminaltables</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">terminaltables</a>
+        
       </nav>
 
 
@@ -127,29 +155,57 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>DoubleTable</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>DoubleTable</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="https://github.com/robpol86/terminaltables/blob/master/docs/doubletable.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+            
+              <a href="https://github.com/Robpol86/terminaltables/blob/master/docs/doubletable.rst" class="fa fa-github"> Edit on GitHub</a>
+            
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="doubletable">
+  
+
+
+    
+    
+
+
+
+    <p class="scv-banner scv-sphinx_rtd_theme"><a href="v3.1.0/doubletable.html"><b>Warning:</b> This document is for the development version of terminaltables. The latest version is v3.1.0.</a></p>
+<div class="section" id="doubletable">
 <span id="id1"></span><h1>DoubleTable<a class="headerlink" href="#doubletable" title="Permalink to this headline">¶</a></h1>
 <p>DoubleTable uses <a class="reference external" href="https://en.wikipedia.org/wiki/Box-drawing_character">box drawing characters</a> for table borders. On Windows terminaltables uses <a class="reference external" href="https://en.wikipedia.org/wiki/Code_page_437">code page 437</a>
 characters. However there is no equivalent character set for POSIX (Linux/OS X). Python automatically converts CP437
@@ -240,15 +296,18 @@ gaps vertically between Unicode characters.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="githubtable.html" class="btn btn-neutral float-right" title="GithubFlavoredMarkdownTable" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="githubtable.html" class="btn btn-neutral float-right" title="GithubFlavoredMarkdownTable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="singletable.html" class="btn btn-neutral" title="SingleTable" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="singletable.html" class="btn btn-neutral" title="SingleTable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -257,7 +316,8 @@ gaps vertically between Unicode characters.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, @Robpol86.
+        &copy; Copyright 2020, @Robpol86.
+      Last updated on Jun 12, 2016, 6:43:03 AM UTC.
 
     </p>
   </div>
@@ -272,6 +332,24 @@ gaps vertically between Unicode characters.</p>
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Tags</dt>
+            <dd><a href="v3.1.0/doubletable.html">v3.1.0</a></dd>
+        </dl>
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="switch_circleci/doubletable.html">switch_circleci</a></dd>
+            <dd><a href="master/doubletable.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
@@ -279,10 +357,11 @@ gaps vertically between Unicode characters.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'3.0.0',
+            VERSION:'3.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  false
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

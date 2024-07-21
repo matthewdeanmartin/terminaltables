@@ -67,3 +67,5 @@ target/
 .idea/
 
 test*.png
+
+.env

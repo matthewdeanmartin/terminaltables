@@ -8,7 +8,18 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-82627369-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Settings &mdash; terminaltables</title>
@@ -17,6 +28,8 @@
   
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
   
 
   
@@ -33,10 +46,15 @@
   
 
   
+    <link rel="stylesheet" href="_static/banner.css" type="text/css" />
+  
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   
 
   
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="terminaltables" href="index.html"/>
         <link rel="next" title="AsciiTable" href="asciitable.html"/>
         <link rel="prev" title="Quickstart" href="quickstart.html"/> 
@@ -48,6 +66,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -67,7 +86,7 @@
             
             
               <div class="version">
-                3.0.0
+                3.1.0
               </div>
             
           
@@ -88,7 +107,10 @@
           
             
             
-                <p class="caption"><span class="caption-text">General</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">General</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
@@ -101,6 +123,10 @@
 <li class="toctree-l1"><a class="reference internal" href="doubletable.html">DoubleTable</a></li>
 <li class="toctree-l1"><a class="reference internal" href="githubtable.html">GithubFlavoredMarkdownTable</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
 
             
           
@@ -112,8 +138,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">terminaltables</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">terminaltables</a>
+        
       </nav>
 
 
@@ -122,29 +150,57 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Settings</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Settings</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="https://github.com/robpol86/terminaltables/blob/master/docs/settings.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+            
+              <a href="https://github.com/Robpol86/terminaltables/blob/master/docs/settings.rst" class="fa fa-github"> Edit on GitHub</a>
+            
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="settings">
+  
+
+
+    
+    
+
+
+
+    <p class="scv-banner scv-sphinx_rtd_theme"><a href="v3.1.0/settings.html"><b>Warning:</b> This document is for the development version of terminaltables. The latest version is v3.1.0.</a></p>
+<div class="section" id="settings">
 <span id="id1"></span><h1>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
 <p>All tables (except <a class="reference internal" href="githubtable.html#githubtable"><span class="std std-ref">GithubFlavoredMarkdownTable</span></a>) have the same settings to change the way the table is displayed. These attributes
 are available after instantiation.</p>
@@ -209,7 +265,7 @@ are either &#8216;left&#8217;, &#8216;right&#8217;, or &#8216;center&#8217;. Lef
 <p>Example:</p>
 <div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">table</span><span class="o">.</span><span class="n">justify_columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;right&#39;</span>  <span class="c1"># Name column.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">table</span><span class="o">.</span><span class="n">justify_columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span>  <span class="c1"># Color column.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">table</span><span class="o">.</span><span class="n">table</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">table</span><span class="o">.</span><span class="n">table</span>
 <span class="go">+---------+-------+-----------+</span>
 <span class="go">|    Name | Color | Type      |</span>
 <span class="go">+---------+-------+-----------+</span>
@@ -239,15 +295,18 @@ text and the column border.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="asciitable.html" class="btn btn-neutral float-right" title="AsciiTable" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="asciitable.html" class="btn btn-neutral float-right" title="AsciiTable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="quickstart.html" class="btn btn-neutral" title="Quickstart" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="quickstart.html" class="btn btn-neutral" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -256,7 +315,8 @@ text and the column border.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, @Robpol86.
+        &copy; Copyright 2020, @Robpol86.
+      Last updated on Jun 12, 2016, 8:54:22 PM UTC.
 
     </p>
   </div>
@@ -271,6 +331,24 @@ text and the column border.</p>
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Tags</dt>
+            <dd><a href="v3.1.0/settings.html">v3.1.0</a></dd>
+        </dl>
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="switch_circleci/settings.html">switch_circleci</a></dd>
+            <dd><a href="master/settings.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
@@ -278,10 +356,11 @@ text and the column border.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'3.0.0',
+            VERSION:'3.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  false
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
