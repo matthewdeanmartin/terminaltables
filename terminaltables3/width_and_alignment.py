@@ -2,7 +2,7 @@
 
 import re
 import unicodedata
-from typing import Sequence, Tuple
+from typing import List, Sequence, Tuple
 
 from terminaltables3.terminal_io import terminal_size
 
@@ -46,7 +46,7 @@ def align_and_pad_cell(
     inner_dimensions: Tuple,
     padding: Sequence[int],
     space: str = " ",
-) -> list[str]:
+) -> List[str]:
     """Align a string horizontally and vertically. Also add additional padding in both dimensions.
 
     :param str string: Input string to operate on.
@@ -131,7 +131,7 @@ def max_dimensions(
             inner_heights[j] = max(inner_heights[j], cell.count("\n") + 1)
             inner_widths[i] = max(
                 inner_widths[i],
-                *[visible_width(the_line) for the_line in cell.splitlines()]
+                *[visible_width(the_line) for the_line in cell.splitlines()],
             )
 
     # Calculate with padding.
