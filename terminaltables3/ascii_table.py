@@ -1,5 +1,7 @@
 """AsciiTable is the main table class. To be inherited by other tables. Define convenience methods here."""
 
+from typing import List
+
 from terminaltables3.base_table import BaseTable
 from terminaltables3.terminal_io import terminal_size
 from terminaltables3.width_and_alignment import (
@@ -41,7 +43,7 @@ class AsciiTable(BaseTable):
         )
 
     @property
-    def column_widths(self) -> list[int]:
+    def column_widths(self) -> List[int]:
         """Return a list of integers representing the widths of each table column without padding."""
         if not self.table_data:
             return []

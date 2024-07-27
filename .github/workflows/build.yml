@@ -4,22 +4,20 @@ on: [ push ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        python: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v3
+      - name: Install poetry
+        run: pipx install poetry
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          # cache: 'pipenv' # caching pipenv dependencies
-      - name: Install poetry and pipx
-        run: |
-          pip install poetry && pip install pipx
-
-      - name: Install global dependencies
-        run: |
-          pipx install isort && pipx install black && pipx install bandit && \
-          pipx install pylint && pipx install pre-commit && pipx install poetry
+          python-version: ${{ matrix.python }}
+          cache: poetry
 
       - name: Install Dependencies
         run: poetry install --with dev
